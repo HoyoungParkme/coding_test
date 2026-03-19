@@ -1,21 +1,29 @@
 import sys
 
-T = int(input())
+N = int(input())
 
-for _ in range(T):
-    n, m = map(int, sys.stdin.readline().split())
-    a = list(map(int, sys.stdin.readline().split()))
-    b = list(map(int, sys.stdin.readline().split()))
-
+for i in range(N):
+    n, m = map(int,sys.stdin.readline().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
     a.sort()
     b.sort()
 
-    cnt = 0
-    j = 0
+    cnt, start_a, start_b  = 0, 0, 0
 
-    for i in range(n):
-        while j < m and a[i] > b[j]:
-            j += 1
-        cnt += j
-
+    while start_a < n:
+        if start_b == m:
+            cnt += start_b
+            start_a +=1
+        else:
+            if a[start_a] > b[start_b]:
+                start_b += 1
+            else:
+                cnt += start_b
+                start_a += 1
     print(cnt)
+
+
+
+
+
